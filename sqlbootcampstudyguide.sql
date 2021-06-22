@@ -62,10 +62,10 @@ LIMIT 5
 ;
 
 -- COUNT DISTINCT examples
-select order_id, count(DISTINCT(ship_date))
-from Orders
-group by order_id
-order by 1
+SELECT order_id, count(DISTINCT(ship_date))
+FROM Orders
+GROUP BY order_id
+ORDER BY 1
 ;
 
 /* WHERE  -- FILTERING the data
@@ -125,30 +125,35 @@ GROUP BY
 HAVING -- Used to filter measures you've aggregated (ex. to filter a sum of more than a certain value)
 
 */
-select count(*) as num_sales -- count all rows from customers table
-from customers
+SELECT count(*) AS num_sales -- count all rows from customers table
+FROM customers;
 -- gives count of all sales in the customers Tables
 -- to split the count(*) by something, use the GROUP BY
-select count(*) as num_sales -- count all rows from customers table
-from customers
-group by segment
-select count(*) as num_sales, segment, customer_name -- count all rows from customers table
-from customers
-group by segment, customer_name
-;
+SELECT count(*) AS num_sales -- count all rows from customers table
+FROM customers
+GROUP BY segment;
+
+SELECT count(*) AS num_sales, segment, customer_name -- count all rows from customers table
+FROM customers
+GROUP BY segment, customer_name;
 
 -- I want profit by sub_category
 SELECT products.sub_category, SUM(orders.profit)
 FROM orders
 	JOIN products ON orders.product_id = products.product_ID
-GROUP BY products.sub_category
+GROUP BY products.sub_category;
 
 
 -- CASTING
-select sales -- sales is numeric
-from orders
-select sales::money -- CAST numeric TO MONEY
-from orders
+-- it is possible to quickly cast a column as a specific data type by using ::
+SELECT sales -- sales is numeric
+FROM orders;
+SELECT sales::money -- CAST numeric TO MONEY
+FROM orders;
+
+-- SQL Convert / CAST
+
+
 
 -- control decimals, use ROUND
 SELECT discount,
